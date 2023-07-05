@@ -12,12 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.cafe.cafespb.R
-import com.cafe.cafespb.shop_bucket.adapter.ShopBucketAdapter
 import com.cafe.cafespb.databinding.FragmentShopBucketBinding
 import com.cafe.cafespb.location_helper_classes.PermissionHelper
+import com.cafe.cafespb.shop_bucket.adapter.ShopBucketAdapter
 import com.cafe.cafespb.view_models.ActualShopListViewModel
 import com.cafe.core.data_classes.Dishes
-
 
 class ShopBucketFragment : Fragment() {
     private lateinit var binding: FragmentShopBucketBinding
@@ -59,22 +58,19 @@ class ShopBucketFragment : Fragment() {
             .into(binding.photoMain)
     }
 
-    //загрузка данных для корзины
+    //загрузка данных для корзины из предыдущего фрагмента, сохран-е во view model
     private fun addShopList() {
         actualShops.sharedList.observe(viewLifecycleOwner) { shops ->
 
-            shopBucketAdapter = ShopBucketAdapter(actualShops, binding.payIt) {dish ->
-            seeMore(dish)
+            shopBucketAdapter = ShopBucketAdapter(actualShops, binding.payIt) { dish ->
+                seeMore(dish)
             }
-            shopBucketAdapter.kitchens = shops.toMutableList()
-            binding.shopBbuscetRecView.adapter = shopBucketAdapter
-        }
 
-        //знач-е из предыдущего фрагмента, сохран-е во view model
-        actualShops.sharedList.observe(viewLifecycleOwner) { updatedShopList ->
+            shopBucketAdapter.kitchens = shopList
+            binding.shopBbuscetRecView.adapter = shopBucketAdapter
+
             shopList.clear()
-            shopList.addAll(updatedShopList)
-            Log.i("DATA", shopList.toString())
+            shopList.addAll(shops)
             shopBucketAdapter.notifyDataSetChanged()
             checkShops()
         }
@@ -100,10 +96,8 @@ class ShopBucketFragment : Fragment() {
     //обновление текущ-го списка покупок
     private fun updateShops() {
         checkShops()
-        actualShops.sharedList.observe(viewLifecycleOwner) {
-//            shopList.clear()
-//            shopList.addAll(it)
-            shopBucketAdapter.kitchens = it.toMutableList()
+        actualShops.sharedList.observe(viewLifecycleOwner) {dishes ->
+            shopBucketAdapter.kitchens = dishes.toMutableList()
             shopBucketAdapter.notifyDataSetChanged()
             checkShops()
         }
@@ -116,9 +110,10 @@ class ShopBucketFragment : Fragment() {
         }
     }
 
-    //всплывающее окно для просмотра доп.информации
+    //всплывающее окно для просмотра фото и доп.информации
     private fun seeMore(dishes: Dishes) {
-        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.alert_dialog_shop_bucket, null)
+        val dialogView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.alert_dialog_shop_bucket, null)
         val image = dialogView.findViewById<ImageView>(R.id.image_dish_shop)
         val textDish = dialogView.findViewById<TextView>(R.id.text_dish_shop)
         val price = dialogView.findViewById<TextView>(R.id.price_shop)
@@ -145,7 +140,6 @@ class ShopBucketFragment : Fragment() {
             alertDialog.dismiss()
         }
     }
-
 
     @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
