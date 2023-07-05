@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/image_busket"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:layout_margin="11dp"
+        android:background="@drawable/ic_dish"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_busket"
+        android:layout_width="191dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4.5dp"
+        android:fontFamily="@font/noto_sans"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="-2sp"
+        android:maxWidth="117dp"
+        android:text="xxxxxxxxx x xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/image_busket"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/price_busket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/noto_sans"
+        android:text="799$"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/image_busket"
+        app:layout_constraintTop_toBottomOf="@+id/text_busket" />
+
+    <TextView
+        android:id="@+id/weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/noto_sans"
+        android:text="500г"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/price_busket"
+        app:layout_constraintTop_toBottomOf="@id/text_busket" />
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:background="@drawable/ic_ticker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/minus_button"
+                android:layout_width="51dp"
+                android:layout_height="45dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/noto_sans"
+                android:padding="1dp"
+                android:text="-"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/number_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:fontFamily="@font/noto_sans"
+                android:inputType="number"
+                android:text="1"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <Button
+                android:id="@+id/plus_button"
+                android:layout_width="51dp"
+                android:layout_height="45dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/noto_sans"
+                android:padding="1dp"
+                android:text="+"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

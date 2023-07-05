@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:layout_margin="25dp"
+    android:background="@drawable/ic_background_rounded"
+    android:clipToOutline="true"
+    app:cardBackgroundColor="@android:color/transparent">
+
+
+    <ImageView
+        android:id="@+id/image_dish_shop"
+        android:layout_width="311dp"
+        android:layout_height="232dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/ic_dish"
+        android:paddingTop="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/back_to_dialog_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="35dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:letterSpacing="0.1"
+        android:src="@drawable/ic_back_dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/image_dish_shop" />
+
+    <TextView
+        android:id="@+id/text_dish_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noto_sans"
+        android:letterSpacing="0.1"
+        android:maxWidth="400dp"
+        android:text="xxxxxxxxx x xxxxxxxxxxxx"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_dish_shop" />
+
+    <TextView
+        android:id="@+id/price_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/noto_sans"
+        android:letterSpacing="0.1"
+        android:text="799$"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_dish_shop" />
+
+    <TextView
+        android:id="@+id/weight_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/noto_sans"
+        android:letterSpacing="0.1"
+        android:text="500г"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/price_shop"
+        app:layout_constraintTop_toBottomOf="@id/text_dish_shop" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

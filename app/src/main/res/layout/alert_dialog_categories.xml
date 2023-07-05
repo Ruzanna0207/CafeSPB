@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:layout_margin="25dp"
+    android:background="@drawable/ic_background_rounded"
+    android:clipToOutline="true"
+    app:cardBackgroundColor="@android:color/transparent">
+
+
+    <ImageView
+        android:id="@+id/image_dish"
+        android:layout_width="311dp"
+        android:layout_height="232dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/ic_dish"
+        android:paddingTop="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_favorite"
+        app:layout_constraintEnd_toStartOf="@+id/back_to_dialog"
+        app:layout_constraintTop_toTopOf="@id/image_dish" />
+
+    <ImageView
+        android:id="@+id/back_to_dialog"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="35dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_back_dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/image_dish" />
+
+    <TextView
+        android:id="@+id/text_dish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noto_sans"
+        android:maxWidth="400dp"
+        android:text="xxxxxxxxx x xxxxxxxxxxxx"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_dish" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noto_sans"
+        android:text="799$"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_dish" />
+
+    <TextView
+        android:id="@+id/weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noto_sans"
+        android:text="500г"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/price"
+        app:layout_constraintTop_toBottomOf="@id/text_dish" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noto_sans"
+        android:letterSpacing="0.01"
+        android:lineSpacingExtra="-1sp"
+        android:maxWidth="311dp"
+        android:text="xxxxxxxxx x xxxxx xxx xxxxxxxxxxx xxxxx xxxxxxxxxx xxxxxxxxxxxxxx xxxxxx  xxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxx xxxxxxx"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/add_dish"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/price" />
+
+    <Button
+        android:id="@+id/add_dish"
+        android:layout_width="311dp"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/button_add"
+        android:backgroundTint="@color/purple"
+        android:fontFamily="@font/noto_sans"
+        android:text="@string/add_to_bucket"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

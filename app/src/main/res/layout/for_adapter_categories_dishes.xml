@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <ImageView
+        android:id="@+id/cathegories_image"
+        android:layout_width="111dp"
+        android:layout_height="111dp"
+        android:background="@drawable/ic_dish"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cathegories_text"
+        android:layout_width="109dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/noto_sans"
+        android:letterSpacing="0.1"
+        android:lineSpacingExtra="-5sp"
+        android:maxWidth="109dp"
+        android:text="Салат по восточному"
+        android:textColor="@color/black"
+        android:textSize="14.5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cathegories_image" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

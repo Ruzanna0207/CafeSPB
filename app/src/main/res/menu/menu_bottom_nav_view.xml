@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="ExtraText">
+
+    <item android:id="@+id/home"
+        android:icon="@drawable/ic_main"
+        tools:ignore="MenuTitle" />
+
+    <item android:id="@+id/search"
+        android:icon="@drawable/ic_search"
+        tools:ignore="MenuTitle" />
+
+    <item android:id="@+id/history"
+        tools:ignore="MenuTitle"
+        android:icon="@drawable/ic_shop_backet"/>
+
+    <item android:id="@+id/acc"
+        tools:ignore="MenuTitle"
+        android:icon="@drawable/ic_account"/>
+</menu>
