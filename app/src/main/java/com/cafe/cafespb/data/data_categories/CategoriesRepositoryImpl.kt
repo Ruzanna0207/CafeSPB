@@ -1,7 +1,7 @@
-package com.cafe.cafespb.categories.data_categories
+package com.cafe.cafespb.data.data_categories
 
-import com.cafe.cafespb.categories.domain_categories.CategoriesApi
-import com.cafe.cafespb.categories.domain_categories.CategoriesRepository
+import com.cafe.cafespb.domain.domain_categories.CategoriesApi
+import com.cafe.cafespb.domain.domain_categories.CategoriesRepository
 import com.cafe.core.data_classes.CategoryDishes
 
 class CategoriesRepositoryImpl : CategoriesRepository {

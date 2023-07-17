@@ -1,4 +1,4 @@
-package com.cafe.cafespb.categories.domain_categories
+package com.cafe.cafespb.domain.domain_categories
 
 import com.cafe.core.data_classes.CategoryDishes
 

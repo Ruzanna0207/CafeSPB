@@ -1,4 +1,4 @@
-package com.cafe.cafespb.location_helper_classes
+package com.cafe.cafespb.location_helper_classes_main_page
 
 import android.content.Context
 import android.location.Geocoder

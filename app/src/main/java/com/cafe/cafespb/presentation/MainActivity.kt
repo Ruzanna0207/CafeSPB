@@ -27,8 +27,7 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.frame, currentFragment!!)
             .commit()
 
-        requestedOrientation =
-            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT //фиксированная портретная ориентация экрана
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT //фиксированная портретная ориентация экрана
     }
 
     override fun onResume() {
@@ -63,7 +62,6 @@ class MainActivity : AppCompatActivity() {
                 binding.bottomNavigationView.menu.findItem(R.id.history).isChecked = true
                 true
             }
-
             else -> false
         }
     }

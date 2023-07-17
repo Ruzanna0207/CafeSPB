@@ -1,4 +1,4 @@
-package com.cafe.cafespb.shop_bucket.adapter
+package com.cafe.cafespb.adapters.adapter_shop_bucket
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -32,14 +32,12 @@ class ShopBucketAdapter(
                 .into(binding.imageBusket)
 
             num = getQuantity(property)
-            sharedViewModel.updateTotalPrice(showTotalPrice())
             updatePayItText()
 
             //действия для кнопки +
             binding.plusButton.setOnClickListener {
                 num++
                 setQuantity(property, num)
-                sharedViewModel.updateTotalPrice(showTotalPrice())
                 binding.numberText.text = num.toString()
                 updatePayItText() //обновление цены
             }
@@ -49,7 +47,6 @@ class ShopBucketAdapter(
                 if (num > 1) {
                     num--
                     setQuantity(property, num)
-                    sharedViewModel.updateTotalPrice(showTotalPrice())
                     binding.numberText.text = num.toString()
                     updatePayItText()
                 } else if (num == 1) {

@@ -1,4 +1,4 @@
-package com.cafe.cafespb.main_page.domain_main_page
+package com.cafe.cafespb.domain.domain_main_page
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
