@@ -11,18 +11,6 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 class ShopBucketRepositoryImpl : ShopBucketRepository {
-
-    //фун-я для опред-я местополож-я вызыв-ся на другом потоке дляч ускор-я работы
-    override suspend fun getLocationAsync(context: Context): String {
-        val locationHelper = LocationHelper(context)
-        return suspendCoroutine { continuation ->
-            locationHelper.getLocation { location ->
-                val cityName = locationHelper.getCityName(location)
-                continuation.resume(cityName)
-            }
-        }
-    }
-
     override fun getDate(): String {
         val calendar = Calendar.getInstance()
         val currentDate = calendar.time

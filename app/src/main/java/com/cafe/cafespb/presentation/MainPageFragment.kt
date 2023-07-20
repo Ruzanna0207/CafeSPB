@@ -1,5 +1,6 @@
 package com.cafe.cafespb.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -35,11 +36,19 @@ class MainPageFragment : Fragment(), Clickable {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMainPageBinding.inflate(inflater, container, false)
+        if (actualKitchens.isEmpty()) {
+            // Загрузка еще не выполнена или данные отсутствуют
+            kitchensViewModel.loadKitchens()
+        } else {
+            // Данные уже загружены, используем их
+            adapterMainPage.notifyDataSetChanged()
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        kitchensViewModel.loadCity(requireContext())
 
         setupViews()
 
@@ -49,10 +58,6 @@ class MainPageFragment : Fragment(), Clickable {
         } else {
             requestLocationPermission()
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
         getLocation()
     }
 
@@ -67,13 +72,22 @@ class MainPageFragment : Fragment(), Clickable {
 
     //опред-ие основного ui, загрузка значений
     private fun setupViews() {
-        kitchensViewModel.loadKitchens()
         kitchensViewModel.loadDate()
-        kitchensViewModel.loadCity(requireActivity())
+
+        if (actualKitchens.isEmpty()) {
+            // Загрузка еще не выполнена или данные отсутствуют
+            kitchensViewModel.loadKitchens()
+        } else {
+            // Данные уже загружены, используем их
+            adapterMainPage.notifyDataSetChanged()
+        }
 
         kitchensViewModel.date.observe(viewLifecycleOwner) { date ->
             binding.date.text = date
         }
+
+        //загрузка последнего сохр. города, если город изменился, то после проверки это знач-е далее изменится
+        binding.city.text = getSavedCity() ?: ""
 
         val userPhoto = "https://i.pinimg.com/564x/a2/fd/e6/a2fde6047d99afbbaa852db5320d6639.jpg"
         Glide.with(this)
@@ -82,9 +96,14 @@ class MainPageFragment : Fragment(), Clickable {
             .into(binding.photoMain)
 
         kitchensViewModel.currentKitchens.observe(viewLifecycleOwner) { kitchensData ->
-            actualKitchens.clear()
-            actualKitchens.addAll(kitchensData)
-            adapterMainPage.notifyDataSetChanged()
+            if (kitchensData.isNotEmpty()) {
+                actualKitchens.clear()
+                actualKitchens.addAll(kitchensData)
+                adapterMainPage.notifyDataSetChanged()
+            } else {
+                // Загрузка не выполнена или данные отсутствуют
+                kitchensViewModel.loadKitchens()
+            }
         }
         binding.mainRecView.adapter = adapterMainPage
     }
@@ -92,8 +111,34 @@ class MainPageFragment : Fragment(), Clickable {
     private fun getLocation() {
         kitchensViewModel.city.observe(viewLifecycleOwner) { city ->
             binding.city.text = city
-            Log.i("loc", city)
+            val savedCity = getSavedCity()
+            if (savedCity == null) {
+                // Если город не сохранен в SharPref
+                saveCity(city)
+            } else {
+                // Если город уже есть проверяем изменился ли он
+                if (city != savedCity) {
+                    // если город изменился
+                    saveCity(city)
+                } else {
+                    // Город не изменился
+                    binding.city.text = savedCity
+                }
+            }
         }
+    }
+
+    private fun saveCity(city: String) {
+        val sharedPreferences =
+            requireContext().getSharedPreferences("CityName", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("city", city)
+        editor.apply()
+    }
+
+    private fun getSavedCity(): String? {
+        val sharedPreferences = requireContext().getSharedPreferences("CityName", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("city", "")
     }
 
     private fun requestLocationPermission() {
