@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cafe.cafespb.shop_bucket.data_shop_bucket.ShopBucketRepositoryImpl
+import com.cafe.cafespb.data.data_shop_bucket.ShopBucketRepositoryImpl
 import com.cafe.core.data_classes.Dishes
 import kotlinx.coroutines.launch
 

@@ -1,4 +1,4 @@
-package com.cafe.cafespb.shop_bucket.adapter
+package com.cafe.cafespb.adapters.adapter_shop_bucket
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

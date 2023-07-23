@@ -1,4 +1,4 @@
-package com.cafe.cafespb.presentation
+package com.cafe.cafespb.presentation.shop_bucket
 
 import android.app.AlertDialog
 import android.content.Context
@@ -14,7 +14,7 @@ import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.cafe.cafespb.R
 import com.cafe.cafespb.databinding.FragmentShopBucketBinding
-import com.cafe.cafespb.shop_bucket.adapter.ShopBucketAdapter
+import com.cafe.cafespb.adapters.adapter_shop_bucket.ShopBucketAdapter
 import com.cafe.cafespb.view_models.ActualShopListViewModel
 import com.cafe.core.data_classes.Dishes
 

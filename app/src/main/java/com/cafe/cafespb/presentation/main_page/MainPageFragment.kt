@@ -1,8 +1,7 @@
-package com.cafe.cafespb.presentation
+package com.cafe.cafespb.presentation.main_page
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,9 @@ import com.bumptech.glide.Glide
 import com.cafe.cafespb.R
 import com.cafe.cafespb.databinding.FragmentMainPageBinding
 import com.cafe.cafespb.location_helper_classes.PermissionHelper
-import com.cafe.cafespb.main_page.adapter.Clickable
-import com.cafe.cafespb.main_page.adapter.MainPageAdapter
+import com.cafe.cafespb.adapters.adapter_main_page.Clickable
+import com.cafe.cafespb.adapters.adapter_main_page.MainPageAdapter
+import com.cafe.cafespb.presentation.categories.CategoriesFragment
 import com.cafe.cafespb.view_models.MainViewModel
 import kotlinx.coroutines.cancelChildren
 
@@ -137,7 +137,8 @@ class MainPageFragment : Fragment(), Clickable {
     }
 
     private fun getSavedCity(): String? {
-        val sharedPreferences = requireContext().getSharedPreferences("CityName", Context.MODE_PRIVATE)
+        val sharedPreferences =
+            requireContext().getSharedPreferences("CityName", Context.MODE_PRIVATE)
         return sharedPreferences.getString("city", "")
     }
 

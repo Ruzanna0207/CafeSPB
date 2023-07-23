@@ -1,4 +1,4 @@
-package com.cafe.cafespb.main_page.adapter
+package com.cafe.cafespb.adapters.adapter_main_page
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

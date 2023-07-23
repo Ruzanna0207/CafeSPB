@@ -1,8 +1,8 @@
-package com.cafe.cafespb.main_page.data_main_page
+package com.cafe.cafespb.data.data_main_page
 
 import android.content.Context
-import com.cafe.cafespb.main_page.domain_main_page.KitchensApi
-import com.cafe.cafespb.main_page.domain_main_page.KitchensRepository
+import com.cafe.cafespb.domain.domain_main_page.KitchensApi
+import com.cafe.cafespb.domain.domain_main_page.KitchensRepository
 import com.cafe.cafespb.location_helper_classes.LocationHelper
 import java.text.SimpleDateFormat
 import java.util.Calendar

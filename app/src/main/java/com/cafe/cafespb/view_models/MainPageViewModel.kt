@@ -7,8 +7,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.cafe.cafespb.main_page.data_main_page.KitchensRepositoryImpl
+import com.cafe.cafespb.data.data_main_page.KitchensRepositoryImpl
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -29,12 +31,16 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     //фун-я для загрузки инфор-и из репозитория для реализации в главном фрагменте
     fun loadKitchens() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Default) {
             try {
-                _currentKitchens.value = repositoryMain.getKitchensDetails().categories ?: emptyList()
-           Log.i("list", currentKitchens.value.toString())
+                val newList = repositoryMain.getKitchensDetails().categories
+
+                withContext(Dispatchers.Main) {
+                    _currentKitchens.value = newList
+                    Log.i("list", currentKitchens.value.toString())
+                }
             } catch (e: Exception) {
-                _error.value = "Ошибка загрузки"
+                _error.postValue("Ошибка загрузки")
             }
         }
     }

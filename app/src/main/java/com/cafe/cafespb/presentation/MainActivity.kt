@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cafe.cafespb.R
 import com.cafe.cafespb.databinding.ActivityMainBinding
+import com.cafe.cafespb.presentation.main_page.MainPageFragment
+import com.cafe.cafespb.presentation.shop_bucket.ShopBucketFragment
 
 private var currentFragment: Fragment? = null
 private var currentItem: MenuItem? = null

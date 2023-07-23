@@ -1,4 +1,4 @@
-package com.cafe.cafespb.presentation
+package com.cafe.cafespb.presentation.categories
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -18,8 +18,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.cafe.cafespb.R
-import com.cafe.cafespb.categories.adapters.ButtonsAdapter
-import com.cafe.cafespb.categories.adapters.CategoriesAdapter
+import com.cafe.cafespb.adapters.adapters_categories.ButtonsAdapter
+import com.cafe.cafespb.adapters.adapters_categories.CategoriesAdapter
 import com.cafe.cafespb.databinding.FragmentCategoriesBinding
 import com.cafe.cafespb.view_models.ActualShopListViewModel
 import com.cafe.cafespb.view_models.CategoriesViewModel
@@ -55,7 +55,6 @@ class CategoriesFragment : Fragment() {
         fetchCategories()
         fetchButtons()
         setupOnBackClickListeners()
-
     }
 
     override fun onDestroyView() {
@@ -72,33 +71,38 @@ class CategoriesFragment : Fragment() {
             .into(binding.photoMainCathegories)
     }
 
-    //фун-я определяет адаптеры для категорий
+    //фун-я определяет адаптер для категорий
     private fun fetchCategories() {
         categoriesViewModel.loadCategory()
 
         categoriesAdapter = CategoriesAdapter { data ->
-            showAndAddDish(data)
+            showAndAddDish(data) //вызывается диалоговое окно
         }
         binding.cathegoriesRecView.adapter = categoriesAdapter
         binding.cathegoriesRecView.layoutManager = GridLayoutManager(requireContext(), 3)
 
         categoriesViewModel.currentCategory.observe(viewLifecycleOwner) { categoryData ->
             categoryData?.let { categories ->
-                listDishesCategories.clear()
-                listDishesCategories.addAll(categories)
-                categoriesAdapter.kitchens = listDishesCategories
-                categoriesAdapter.notifyDataSetChanged()
+                if (categoryData.isNotEmpty()) {
+                    listDishesCategories.clear()
+                    listDishesCategories.addAll(categories)
+                    categoriesAdapter.kitchens = listDishesCategories
+                    categoriesAdapter.notifyDataSetChanged()
+                } else {
+                    // Загрузка не выполнена или данные отсутствуют
+                    categoriesViewModel.loadCategory()
+                }
             }
         }
+
         categoriesViewModel.error.observe(viewLifecycleOwner) { errorMessage ->
             errorMessage?.let {
-                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    //фун-я определяет адаптеры для кнопок-категорий
+    //фун-я определяет адаптер для кнопок-категорий
     private fun fetchButtons() {
         categoriesViewModel.loadTags()
 
@@ -116,7 +120,6 @@ class CategoriesFragment : Fragment() {
         categoriesViewModel.currentTags.observe(viewLifecycleOwner) { tags ->
             buttonsAdapter.item = tags
             buttonsAdapter.notifyDataSetChanged()
-            Log.i("INFO22", "$tags")
         }
     }
 
@@ -129,8 +132,6 @@ class CategoriesFragment : Fragment() {
                 filteredTagsForSearch.addAll(newList)
                 categoriesAdapter.kitchens = filteredTagsForSearch
                 categoriesAdapter.notifyDataSetChanged()
-
-                Log.i("filter", "$filteredTagsForSearch")
             }
         }
     }

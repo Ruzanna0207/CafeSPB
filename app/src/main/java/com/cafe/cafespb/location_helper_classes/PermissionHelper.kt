@@ -4,7 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import com.cafe.cafespb.presentation.MainPageFragment
+import com.cafe.cafespb.presentation.main_page.MainPageFragment
 
 //класс использ-ся для получ-я разрешений на получ-е локации пользователя
 class PermissionHelper(private val fragment: MainPageFragment) {
