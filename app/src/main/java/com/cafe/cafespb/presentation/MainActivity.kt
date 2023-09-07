@@ -2,31 +2,24 @@ package com.cafe.cafespb.presentation
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.cafe.cafespb.R
 import com.cafe.cafespb.databinding.ActivityMainBinding
 import com.cafe.cafespb.presentation.main_page.MainPageFragment
 import com.cafe.cafespb.presentation.shop_bucket.ShopBucketFragment
 
-private var currentFragment: Fragment? = null
-private var currentItem: MenuItem? = null
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private var mainPageFragment: MainPageFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        currentItem = binding.bottomNavigationView.menu.findItem(R.id.home)
-        currentItem?.isChecked = true
-
-        currentFragment = MainPageFragment.newInstance()
         supportFragmentManager.beginTransaction()
-            .replace(R.id.frame, currentFragment!!)
+            .replace(R.id.frame, MainPageFragment.newInstance())
             .commit()
 
         requestedOrientation =
@@ -38,8 +31,11 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
+                    if (mainPageFragment == null) {
+                        mainPageFragment = MainPageFragment.newInstance()
+                    }
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame, MainPageFragment.newInstance())
+                        .replace(R.id.frame, mainPageFragment!!)
                         .addToBackStack(null)
                         .commit()
                 }
@@ -52,21 +48,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             true
-        }
-
-        //обработка условий если нажат элемент bottom.nav.view
-        currentItem?.isChecked = when (currentFragment) {
-            is MainPageFragment -> {
-                binding.bottomNavigationView.menu.findItem(R.id.home).isChecked = true
-                true
-            }
-
-            is ShopBucketFragment -> {
-                binding.bottomNavigationView.menu.findItem(R.id.history).isChecked = true
-                true
-            }
-
-            else -> false
         }
     }
 }
